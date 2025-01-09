@@ -3,7 +3,7 @@ import React from 'react'
 
 const About = () => {
     return (
-        <section className='px-4 sm:px-20' id='about'>
+        <section className='px-8 sm:px-20' id='about'>
             <div className='flex flex-col sm:flex-row justify-center gap-10 sm:gap-20 h-screen items-center'>
                 <div>
                     <Image src='/images/about.svg' alt='about-image' width={450} height={450} />

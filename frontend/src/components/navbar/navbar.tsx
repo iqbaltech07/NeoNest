@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuItem, NavbarMenu, NavbarMenuToggle } from "@nextui-org/react";
 import Image from 'next/image';
 import { useScroll } from '@/hooks/useScroll';
 
 const NavigationBar = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
 
     const { isScroll } = useScroll();
 
-    const menuItems: { label: string; href: string; isActive: boolean }[] = [
+    const menuItems: IMenuItems[] = [
         {
             label: "Beranda",
-            href: "#",
+            href: "/#home",
             isActive: true,
         },
         {
             label: "Layanan",
-            href: "#",
+            href: "/#layanan",
             isActive: false,
         },
         {
             label: "Tentang",
-            href: "#",
+            href: "/#about",
             isActive: false,
         }
     ];
-
 
     return (
         <Navbar
@@ -43,7 +42,7 @@ const NavigationBar = () => {
                     <Image src="/images/logo.svg" alt="NeoNest" width={180} height={180} />
                 </NavbarBrand>
             </NavbarContent>
-            <NavbarContent className="hidden sm:flex gap-4 pl-20" justify="center">
+            <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 {menuItems.map((item, index) => (
                     <NavbarItem key={`${item.label}-${index}`} isActive={item.isActive}>
                         <Link

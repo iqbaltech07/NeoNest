@@ -1,10 +1,10 @@
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import React, { useEffect } from 'react';
+import React from 'react';
 
 export function useScroll(){
     const [isScroll, setisScroll] = React.useState<boolean>(false);
-    useEffect(() => {
+    React.useEffect(() => {
         AOS.init({
             duration: 1000,
             once: true,

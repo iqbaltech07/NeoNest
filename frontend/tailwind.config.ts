@@ -6,7 +6,7 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -14,9 +14,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
-      backgroundImage: {
-        "blur": "url('/images/blur.svg')",
-      }
+      keyframes: {
+        infiniteScroll: {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(-50%)" },
+        },
+      },
+      animation: {
+        "infinite-scroll": "infiniteScroll 10s linear infinite",
+      },
     },
   },
   darkMode: "class",
