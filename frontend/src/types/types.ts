@@ -1,7 +1,7 @@
 interface IMenuItems {
   label: string;
   href: string;
-  isActive: boolean;
+  section: string;
 }
 
 interface IStatistic {

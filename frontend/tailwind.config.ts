@@ -17,11 +17,11 @@ export default {
       keyframes: {
         infiniteScroll: {
           from: { transform: "translateY(0)" },
-          to: { transform: "translateY(-50%)" },
+          to: { transform: "translateY(-100%)" },
         },
       },
       animation: {
-        "infinite-scroll": "infiniteScroll 10s linear infinite",
+        "infinite-scroll": "infiniteScroll 30s linear infinite",
       },
     },
   },

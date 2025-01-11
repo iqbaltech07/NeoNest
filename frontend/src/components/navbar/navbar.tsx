@@ -1,36 +1,23 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuItem, NavbarMenu, NavbarMenuToggle } from "@nextui-org/react";
 import Image from 'next/image';
-import { useScroll } from '@/hooks/useScroll';
+import useActiveSection from '@/hooks/useActiveSection';
 
 const NavigationBar = () => {
-    const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const activeSection = useActiveSection();
 
-    const { isScroll } = useScroll();
-
-    const menuItems: IMenuItems[] = [
-        {
-            label: "Beranda",
-            href: "/#home",
-            isActive: true,
-        },
-        {
-            label: "Layanan",
-            href: "/#layanan",
-            isActive: false,
-        },
-        {
-            label: "Tentang",
-            href: "/#about",
-            isActive: false,
-        }
-    ];
+    const menuItems = useMemo(() => [
+        { label: "Beranda", href: "/#home", section: "home" },
+        { label: "Layanan", href: "/#layanan", section: "layanan" },
+        { label: "Tentang", href: "/#about", section: "about" },
+    ], []);
 
     return (
         <Navbar
-            className={`px-4 sm:px-20 sm:py-5 z-50 fixed ${!isScroll && 'bg-transparent'}`}
+            className={`px-4 sm:px-20 sm:py-5 z-50 fixed ${!activeSection && 'bg-transparent'}`}
             position="sticky"
-            isBlurred={isScroll}
+            isMenuOpen={isMenuOpen}
             onMenuOpenChange={setIsMenuOpen}
         >
             <NavbarContent>
@@ -44,11 +31,11 @@ const NavigationBar = () => {
             </NavbarContent>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 {menuItems.map((item, index) => (
-                    <NavbarItem key={`${item.label}-${index}`} isActive={item.isActive}>
+                    <NavbarItem key={`${item.label}-${index}`} isActive={activeSection === item.section}>
                         <Link
                             color="foreground"
                             href={item.href}
-                            className={`text-[18px] ${item.isActive ? 'font-semibold underline underline-offset-8 decoration-2 -translate-y-1' : 'text-[#333]'} `}
+                            className={`text-[18px] ${activeSection === item.section ? 'font-semibold underline underline-offset-8 decoration-2 -translate-y-1 text-blue-600' : 'text-[#333]'}`}
                         >
                             {item.label}
                         </Link>
@@ -57,9 +44,9 @@ const NavigationBar = () => {
             </NavbarContent>
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <Button as={Link} className="bg-[#3A6BAE] text-white px-8 sm:px-10 rounded-full" href="#" variant="flat">
+                    {/* <Button as={Link} className="bg-[#3A6BAE] text-white px-8 sm:px-10 rounded-full" href="#" variant="flat">
                         Masuk
-                    </Button>
+                    </Button> */}
                 </NavbarItem>
             </NavbarContent>
             <NavbarMenu>
@@ -67,11 +54,10 @@ const NavigationBar = () => {
                     <NavbarMenuItem key={`${item.label}-${index}`}>
                         <Link
                             className="w-full"
-                            color={
-                                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-                            }
+                            color={activeSection === item.section ? "primary" : "foreground"}
                             href={item.href}
                             size="lg"
+                            onPress={() => setIsMenuOpen(false)}
                         >
                             {item.label}
                         </Link>

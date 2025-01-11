@@ -29,7 +29,7 @@ const Counts = ({ data }: ICount) => {
     }, [isScroll, data]);
 
     return (
-        <div className="relative z-40 h-[500px] sm:h-10">
+        <div className="relative z-30 h-[500px] sm:h-10">
             <div className={`${isScroll ? "block px-8 sm:px-20 absolute -top-8 sm:-top-[55px] w-full " : "hidden z-20"}`} data-aos='fade-up' data-aos-anchor-placement="center-center">
                 <Card shadow='sm'>
                     <CardBody className='flex flex-col sm:flex-row justify-evenly gap-5 py-4'>

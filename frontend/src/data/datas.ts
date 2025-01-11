@@ -48,25 +48,25 @@ const services: IService[] = [
     id: 1,
     image: "/images/services/up-followers.png",
     label: "Jasa Boost Sosial Media",
-    link: "",
+    link: "https://wa.me/6285189951211?text=Halo%2C%20Saya%20ingin%20order%20jasa%20Up%20Followers%2C%20Apakah%20tersedia%3F",
   },
   {
     id: 2,
     image: "/images/services/jasa-website.png",
     label: "Jasa Pembuatan Web",
-    link: "",
+    link: "https://wa.me/6285189951211?text=Halo%2C%20Saya%20ingin%20order%20jasa%20Pembuatan%20Website%2C%20Apakah%20tersedia%3F",
   },
   {
     id: 3,
     image: "/images/services/jasa-design.png",
     label: "Jasa Design Figma",
-    link: "",
+    link: "https://wa.me/6285189951211?text=Halo%2C%20Saya%20ingin%20order%20jasa%20Design%20Figma%2C%20Apakah%20tersedia%3F",
   },
   {
     id: 4,
     image: "/images/services/jasa-design.png",
     label: "Jasa Joki Tugas",
-    link: "",
+    link: "https://wa.me/6285189951211?text=Halo%2C%20Saya%20ingin%20order%20jasa%20Joki%20Tugas%2C%20Apakah%20tersedia%3F",
   },
 ];
 

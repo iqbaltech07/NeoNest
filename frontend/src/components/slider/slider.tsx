@@ -7,14 +7,14 @@ import { testimonials } from "@/data/datas";
 import { randomDuration } from "@/utils/functions";
 
 const TestimonialSlider = () => {
-    const [row, setRow] = useState<number>(3);
+    const [cols, setcols] = useState<number>(3);
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 768) {
-                setRow(1);
+                setcols(1);
             } else {
-                setRow(3);
+                setcols(3);
             }
         };
 
@@ -29,37 +29,47 @@ const TestimonialSlider = () => {
 
     return (
         <ScrollShadow
-            className="flex justify-between max-w-5xl gap-[1.5rem] h-[35rem] shrink-0 mx-auto overflow-hidden"
-            offset={-60}
-            size={100}
+            className="h-[35rem] overflow-hidden flex items-center"
+            offset={-80}
+            size={90}
             hideScrollBar
         >
-            {[...new Array(row)].sort(() => Math.random() - 0.5).map((_, i) => {
-                return (
-                    <div className="flex flex-col overflow-hidden mx-auto" key={i}>
-                        <div
-                            className="max-w-none flex flex-col animate-infinite-scroll"
-                            style={{
-                                animationDuration: `${randomDuration(12000, 25000)}ms`,
-                            }}
-                        >
-                            {testimonials
-                                .sort(() => Math.random() - 0.5)
-                                .map((testimonial, j) => (
-                                    <div className="p-6" key={j}>
-                                        <Cards.CardTestimoni
-                                            name={testimonial.name}
-                                            src={testimonial.image}
-                                            text={testimonial.text}
-                                        />
-                                    </div>
-                                ))}
+            <div className="flex justify-between max-w-5xl gap-[1.5rem] h-screen shrink-0 mx-auto overflow-hidden">
+                {[...new Array(cols)].map((_, i) => {
+                    const colsDurations = [
+                        ['15000ms', '15000ms'], 
+                        ['23000ms', '23000ms'], 
+                        ['14000ms', '14000ms'], 
+                    ];
 
+                    return (
+                        <div className="flex flex-col overflow-hidden" key={i}>
+                            {[...new Array(2)].map((_, j) => (
+                                <div
+                                    className="max-w-none flex flex-col animate-infinite-scroll"
+                                    style={{
+                                        animationDuration: colsDurations[i][j],
+                                    }}
+                                    aria-hidden={i % 2 === 0 ? true : false}
+                                >
+                                    {testimonials
+                                        .map((testimonial, k) => (
+                                            <div className="p-6" key={k}>
+                                                <Cards.CardTestimoni
+                                                    name={testimonial.name}
+                                                    src={testimonial.image}
+                                                    text={testimonial.text}
+                                                />
+                                            </div>
+                                        ))}
+                                </div>
+                            ))}
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
         </ScrollShadow>
+
     );
 };
 
