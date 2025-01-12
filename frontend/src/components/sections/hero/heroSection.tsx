@@ -2,7 +2,6 @@
 
 import { Button } from '@nextui-org/react'
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 
 const HeroSection = () => {
@@ -15,9 +14,7 @@ const HeroSection = () => {
                             <h1 className='max-w-[500px] text-[44px] font-bold tracking-[-1.1%] leading-[119%]'>Upgrade Tanpa Batas, Solusi Mudah untuk Level Up!</h1>
                             <p className='max-w-[545px] text-[17px] font-light leading-[135%]'>Kami hadir dengan layanan terpercaya dan tenaga profesional, kami memastikan hasil maksimal tanpa mengorbankan kenyamanan dan keamanan Anda. Solusi kami dirancang khusus untuk memenuhi kebutuhan Anda, kapan saja dan di mana saja.</p>
                             <div>
-                                <Link href="#layanan">
-                                    <Button className='bg-[#3A6BAE] text-white px-10' radius='sm'>Layanan Kami</Button>
-                                </Link>
+                                <Button className='bg-[#3A6BAE] text-white px-10' radius='sm' onPress={(): void => window.location.replace("/#layanan")}>Layanan Kami</Button>
                             </div>
                         </div>
                     </div>
