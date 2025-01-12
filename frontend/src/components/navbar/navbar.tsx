@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuItem, NavbarMenu, NavbarMenuToggle } from "@nextui-org/react";
 import Image from 'next/image';
-import useActiveSection from '@/hooks/useActiveSection';
+import useScroll from '@/hooks/useScroll';
 
 const NavigationBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const activeSection = useActiveSection();
+    const { activeSection } = useScroll();
 
     const menuItems = useMemo(() => [
         { label: "Beranda", href: "/#home", section: "home" },

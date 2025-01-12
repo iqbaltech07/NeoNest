@@ -1,24 +1,49 @@
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import React from 'react';
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-export function useScroll(){
-    const [isScroll, setisScroll] = React.useState<boolean>(false);
-    React.useEffect(() => {
-        AOS.init({
-            duration: 1000,
-            once: true,
+const useScroll = () => {
+  const [activeSection, setActiveSection] = useState<string>("home");
+  const [isScroll, setIsScroll] = useState<boolean>(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    const handleScroll = () => {
+      setIsScroll(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
         });
+      },
+      { threshold: 0.5 }
+    );
 
-        const handleScroll = () => {
-            setisScroll(window.scrollY > 0);
-        };
+    const sections = ["home", "layanan", "about"];
+    sections.forEach((sectionId) => {
+      const sectionElement = document.getElementById(sectionId);
+      if (sectionElement) {
+        observer.observe(sectionElement);
+      }
+    });
 
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    },[])
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
+  }, []);
 
-    return {isScroll}
-}
+  return { isScroll, activeSection };
+};
+
+export default useScroll;
