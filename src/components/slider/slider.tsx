@@ -4,7 +4,6 @@ import { ScrollShadow } from "@nextui-org/react";
 import React, { useState, useEffect } from "react";
 import { Cards } from "../cards/cards";
 import { testimonials } from "@/data/datas";
-import { randomDuration } from "@/utils/functions";
 
 const TestimonialSlider = () => {
     const [cols, setcols] = useState<number>(3);

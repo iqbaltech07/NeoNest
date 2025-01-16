@@ -1,3 +1,29 @@
+interface IStatistic {
+  id: number;
+  label: string;
+  value: number | string;
+}
+interface IBenefit {
+  id: number;
+  image: string;
+  label: string;
+  description: string;
+}
+
+interface IService {
+  id: number;
+  image: string;
+  label: string;
+  link: string;
+}
+
+interface ITestimonial {
+  id: number;
+  text: string;
+  name: string;
+  image: string;
+}
+
 const counts: IStatistic[] = [
   {
     id: 1,

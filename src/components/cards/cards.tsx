@@ -2,7 +2,17 @@ import React from "react"
 import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 import Link from "next/link";
 import { IoStarSharp } from "react-icons/io5";
+interface ICardTestimoni {
+    src: string;
+    name: string;
+    text: string;
+}
 
+interface ICardService {
+    src: string;
+    title: string;
+    link: string;
+}
 
 const Cards = {
     CardService: ({ link, src, title }: ICardService) => {
