@@ -4,14 +4,7 @@ import { Card, CardBody } from '@nextui-org/react'
 import React, { useEffect, useRef } from 'react'
 import { CountUp } from 'countup.js'
 import useScroll from '@/hooks/useScroll'
-
-interface ICount {
-    data?: {
-        id: number,
-        label: string,
-        value: number | string
-    }[]
-}
+import { ICount } from '@/types/types'
 
 const Counts = ({ data }: ICount) => {
     const countRefs = useRef<(HTMLHeadingElement | null)[]>([]);

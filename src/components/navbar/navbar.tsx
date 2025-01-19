@@ -3,13 +3,14 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, NavbarMenuItem, N
 import Image from 'next/image';
 import useScroll from '@/hooks/useScroll';
 import { usePathname } from 'next/navigation';
+import { IMenuItems } from '@/types/types';
 
 const NavigationBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const { activeSection } = useScroll();
     const pathname = usePathname()
 
-    const menuItems = useMemo(() => [
+    const menuItems = useMemo((): IMenuItems => [
         { label: "Beranda", href: "/#home", section: "home" },
         { label: "Layanan", href: "/#layanan", section: "layanan" },
         { label: "Tentang", href: "/#about", section: "about" },

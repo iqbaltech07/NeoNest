@@ -1,6 +1,6 @@
 type Step = string;
 
-interface StepColumnProps {
+interface IStepColumn {
     steps: Step[];
     startIndex: number;
 }
@@ -15,7 +15,7 @@ export const steps: Step[] = [
 ];
 
 
-const StepColumn = ({ steps, startIndex }: StepColumnProps) => {
+const StepColumn = ({ steps, startIndex }: IStepColumn) => {
     return (
         <div
             className={`flex flex-col items-start space-y-8`}
