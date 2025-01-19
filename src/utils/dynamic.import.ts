@@ -7,4 +7,6 @@ export const dynamicImport = (
   return dynamic(importFunction, { ssr });
 };
 
-export const ServiceSwiper = dynamicImport(() => import('@/components/swiper/swiper').then((mod) => mod.default));
+export const ServiceSwiper = dynamicImport(() =>
+  import("@/components/swiper/swiper").then((mod) => mod.default)
+);

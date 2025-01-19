@@ -1,10 +1,8 @@
-export interface IMenuItems
-  extends Array<{
-    label: string;
-    href: string;
-    section: string;
-  }> {}
-
+export interface IMenuItems {
+  label: string;
+  href: string;
+  section: string;
+}
 export interface IStatistic {
   id: number;
   label: string;
