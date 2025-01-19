@@ -5,12 +5,14 @@ import useScroll from '@/hooks/useScroll';
 import { usePathname } from 'next/navigation';
 import { IMenuItems } from '@/types/types';
 
+type TMenuItems = IMenuItems[]
+
 const NavigationBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const { activeSection } = useScroll();
     const pathname = usePathname()
 
-    const menuItems = useMemo((): IMenuItems => [
+    const menuItems = useMemo((): TMenuItems => [
         { label: "Beranda", href: "/#home", section: "home" },
         { label: "Layanan", href: "/#layanan", section: "layanan" },
         { label: "Tentang", href: "/#about", section: "about" },
