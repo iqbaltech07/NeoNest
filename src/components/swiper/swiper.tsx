@@ -31,7 +31,7 @@ const ServiceSwiper = () => {
                 <SwiperSlide key={index}>
                     <div className="flex justify-center">
                         <Cards.CardService
-                            link={service.link}
+                            link={`/service/${service.id}`}
                             src={service.image}
                             title={service.label}
                         />
