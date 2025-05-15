@@ -47,3 +47,16 @@ export interface ICardService {
   title: string;
   link: string;
 }
+interface IDataService {
+  id: number;
+  name: string;
+  count: number;
+  price: number;
+}
+
+export interface IDataCategory {
+  id: number;
+  category: string;
+  services: IDataService[];
+}
+
