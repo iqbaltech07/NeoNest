@@ -2,18 +2,13 @@
 
 import React from 'react'
 import { NextUIProvider } from '@nextui-org/react'
-import NavigationBar from '@/components/navbar/navbar'
-import Footer from '@/components/footer/footer'
 
 export function Providers({ children }: { children: React.ReactNode }) {
     return (
         <NextUIProvider>
-            
-            <NavigationBar />
-            <main className='container mx-auto overflow-x-hidden'>
+            <div>
                 {children}
-            </main>
-            <Footer />
+            </div>
         </NextUIProvider>
     )
 }

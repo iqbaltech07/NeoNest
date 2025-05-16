@@ -6,14 +6,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './swiper.css';
 
-import { Navigation } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { services } from '@/data/datas';
 
 const ServiceSwiper = () => {
+
     return (
         <Swiper
             navigation={true}
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             loop={true}
             className="swiper"
             initialSlide={3}
@@ -31,7 +32,7 @@ const ServiceSwiper = () => {
                 <SwiperSlide key={index}>
                     <div className="flex justify-center">
                         <Cards.CardService
-                            link={`/service/${service.id}`}
+                            link={service.id == 3 ? `/service/${service.id}` : `https://wa.me/6285951334587?text=${encodeURIComponent(`Halo, Saya ingin order jasa ${service.label}`)}`}
                             src={service.image}
                             title={service.label}
                         />

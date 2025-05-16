@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, NavbarMenuItem, NavbarMenu, NavbarMenuToggle } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, NavbarMenuItem, NavbarMenu, NavbarMenuToggle, Button } from "@nextui-org/react";
 import Image from 'next/image';
 import useScroll from '@/hooks/useScroll';
 import { usePathname } from 'next/navigation';
@@ -9,7 +9,7 @@ type TMenuItems = IMenuItems[]
 
 const NavigationBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-    const { activeSection } = useScroll();
+    const { activeSection, isScroll } = useScroll();
     const pathname = usePathname()
 
     const menuItems = useMemo((): TMenuItems => [
@@ -21,20 +21,18 @@ const NavigationBar = () => {
     return (
         <div className={`relative ${pathname == "/" ? null : "h-[105px]"} `}>
             <Navbar
-                className={`px-4 sm:px-20 sm:py-5 z-50 fixed ${!activeSection && 'bg-transparent'}`}
+                className={`px-4 sm:px-20 sm:py-5 z-50 fixed ${!isScroll && 'bg-transparent'}`}
                 position="sticky"
                 isMenuOpen={isMenuOpen}
                 onMenuOpenChange={setIsMenuOpen}
+                isBlurred={isScroll}
             >
-                <NavbarContent>
-                    <NavbarMenuToggle
-                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                        className="sm:hidden"
-                    />
+                <NavbarContent justify='end'>
                     <NavbarBrand>
                         <Image src="/images/logo.svg" alt="NeoNest" width={180} height={180} />
                     </NavbarBrand>
                 </NavbarContent>
+
                 <NavbarContent className="hidden sm:flex gap-4" justify="center">
                     {menuItems.map((item, index) => (
                         <NavbarItem key={`${item.label}-${index}`} isActive={activeSection === item.section}>
@@ -49,10 +47,14 @@ const NavigationBar = () => {
                     ))}
                 </NavbarContent>
                 <NavbarContent justify="end">
-                    <NavbarItem>
-                        {/* <Button as={Link} className="bg-[#3A6BAE] text-white px-8 sm:px-10 rounded-full" href="#" variant="flat">
-                        Masuk
-                    </Button> */}
+                    <NavbarMenuToggle
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                        className="sm:hidden"
+                    />
+                    <NavbarItem className='hidden'>
+                        <Button as={Link} className="bg-[#3A6BAE] text-white px-8 sm:px-10 rounded-full" href="#" variant="flat">
+                            Masuk
+                        </Button>
                     </NavbarItem>
                 </NavbarContent>
                 <NavbarMenu>
@@ -69,6 +71,13 @@ const NavigationBar = () => {
                             </Link>
                         </NavbarMenuItem>
                     ))}
+                    <NavbarContent>
+                        <NavbarItem className='block w-screen'>
+                            <Button as={Link} className="bg-[#3A6BAE] text-white px-8 sm:px-10 rounded-full !w-full" href="#" variant="flat">
+                                Masuk
+                            </Button>
+                        </NavbarItem>
+                    </NavbarContent>
                 </NavbarMenu>
             </Navbar>
         </div>
