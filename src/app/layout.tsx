@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { Providers } from "../libs/providers";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,6 +12,10 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "NeoNest",
   description: "Solusi Digital Tanpa Ribet",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased `}
+        className={`${poppins.className} antialiased`}
       >
         <Providers>
           {children}

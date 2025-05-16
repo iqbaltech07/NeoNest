@@ -47,3 +47,17 @@ export interface ICardService {
   title: string;
   link: string;
 }
+interface IDataNeoBoostService {
+  id: number;
+  name: string;
+  count: number;
+  isPromo: boolean;
+  price: number;
+}
+
+export interface IDataNeoBoostCategory {
+  id: number;
+  category: string;
+  services: IDataNeoBoostService[];
+}
+
