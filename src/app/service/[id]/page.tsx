@@ -16,33 +16,38 @@ const dataMap: { [key: string]: any } = {
 
 const ServiceProduct = ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = React.use(params)
-    const productData = dataMap[id] || []
 
     const [selectedCategories, setSelectedCategories] = React.useState<string[]>([])
     const [selectedPriceSort, setSelectedPriceSort] = React.useState<string | null>(null)
 
     const filteredData = React.useMemo(() => {
-        let result = productData
+        const productData = dataMap[id] || []
 
-        // Filter kategori berdasarkan checkbox
-        if (selectedCategories.length > 0) {
-            result = result.filter((item: any) =>
-                selectedCategories.includes(item.category.toLowerCase())
+        const filteredCategories = selectedCategories.length > 0
+            ? productData.filter((cat: any) =>
+                selectedCategories
+                    .map(s => s.toLowerCase())
+                    .includes(cat.category.toLowerCase())
             )
-        }
+            : productData
 
-        // Sort service berdasarkan harga
-        if (selectedPriceSort) {
-            result = result.map((category: any) => {
-                const sortedServices = [...category.services].sort((a: any, b: any) => {
-                    return selectedPriceSort === "asc" ? a.price - b.price : b.price - a.price
-                })
-                return { ...category, services: sortedServices }
-            })
-        }
+        const result = filteredCategories.map((cat: any) => {
+            const filteredServices = [...cat.services]
+
+            if (selectedPriceSort === "asc") {
+                filteredServices.sort((a: any, b: any) => a.price - b.price)
+            } else if (selectedPriceSort === "desc") {
+                filteredServices.sort((a: any, b: any) => b.price - a.price)
+            }
+
+            return {
+                ...cat,
+                services: filteredServices
+            }
+        })
 
         return result
-    }, [productData, selectedCategories, selectedPriceSort])
+    }, [id, selectedCategories, selectedPriceSort])
 
     return (
         <PageContainer className='h-fit mb-20 px-5 sm:px-0' withNavbar withFooter>
