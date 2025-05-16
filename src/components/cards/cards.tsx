@@ -102,17 +102,19 @@ const Cards = {
                 </CardBody>
 
                 <CardFooter className="pt-2 px-3 sm:px-5">
-                    <Link
-                        href={`https://wa.me/6285951334587?text=${encodeURIComponent(
-                            `Saya ingin order ${service.count >= 1000 ? `${service.count / 1000}k` : service.count} ${service.name}. Apakah bisa?`
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Button
+                        className="w-full bg-zinc-800 text-white font-medium"
+                        radius="sm"
+                        size="sm"
+                        onClick={() => {
+                            const message = `Saya ingin order ${service.count >= 1000 ? `${service.count / 1000}k` : service.count} ${service.name}. Apakah bisa?`;
+                            const encodedMessage = encodeURIComponent(message);
+                            const url = `https://wa.me/6285951334587?text=${encodedMessage}`;
+                            window.open(url, '_blank');
+                        }}
                     >
-                        <Button className="w-full bg-zinc-800 text-white font-medium" radius="sm" size="sm">
-                            Order Sekarang
-                        </Button>
-                    </Link>
+                        Order Sekarang
+                    </Button>
                 </CardFooter>
             </Card>
         )
