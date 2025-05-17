@@ -87,9 +87,10 @@ const ServiceProduct = ({ params }: { params: Promise<{ id: string }> }) => {
                             <Checkbox value="desc">Tertinggi</Checkbox>
                         </CheckboxGroup>
                     </div>
+                    
                 </div>
 
-                <div className='grid grid-cols-2 sm:grid-cols-5 gap-5'>
+                <div className='grid grid-cols-2  lg:grid-cols-4 gap-5 sm:gap-5'>
                     {filteredData.length > 0 ? (
                         filteredData.flatMap((category: any) =>
                             category.services.map((service: any) => (

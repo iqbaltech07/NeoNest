@@ -65,7 +65,7 @@ const Cards = {
         }
 
         return (
-            <Card className="w-full h-[280px] sm:h-[350px] border-none bg-white">
+            <Card className="w-full sm:w-[220px] md:w-[285px] lg:w-[290px] h-[280px] sm:h-[350px] border-none bg-white">
                 <CardHeader className="flex flex-col items-start pb-0 pt-2 px-3 sm:pt-4 sm:px-5">
                     <div className="flex items-center w-full">
                         {renderIcon[category.toLocaleLowerCase()]}
