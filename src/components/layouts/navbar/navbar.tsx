@@ -57,27 +57,29 @@ const NavigationBar = () => {
                         </Button>
                     </NavbarItem>
                 </NavbarContent>
-                <NavbarMenu>
-                    {menuItems.map((item, index) => (
-                        <NavbarMenuItem key={`${item.label}-${index}`}>
-                            <Link
-                                className="w-full"
-                                color={activeSection === item.section ? "primary" : "foreground"}
-                                href={item.href}
-                                size="lg"
-                                onPress={() => setIsMenuOpen(false)}
-                            >
-                                {item.label}
-                            </Link>
-                        </NavbarMenuItem>
-                    ))}
-                    <NavbarContent>
-                        <NavbarItem className='block w-screen'>
+                <NavbarMenu className='bg-white/60 backdrop-blur-md'>
+                    <div className='mt-5 flex justify-center flex-col items-center gap-2'>
+                        {menuItems.map((item, index) => (
+                            <NavbarMenuItem key={`${item.label}-${index}`}>
+                                <Link
+                                    className="w-full"
+                                    color={activeSection === item.section ? "primary" : "foreground"}
+                                    href={item.href}
+                                    size="lg"
+                                    onPress={() => setIsMenuOpen(false)}
+                                >
+                                    {item.label}
+                                </Link>
+                            </NavbarMenuItem>
+                        ))}
+                    </div>
+                    <NavbarMenuItem className='w-full mt-5'>
+                        <NavbarItem className='block'>
                             <Button as={Link} className="bg-[#3A6BAE] text-white px-8 sm:px-10 rounded-full !w-full" href="#" variant="flat">
                                 Masuk
                             </Button>
                         </NavbarItem>
-                    </NavbarContent>
+                    </NavbarMenuItem>
                 </NavbarMenu>
             </Navbar>
         </div>

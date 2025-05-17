@@ -7,6 +7,7 @@ import { NeoBoostService } from '@/data/dataNeoBoost'
 import { webService } from '@/data/dataWebService'
 import { Checkbox, CheckboxGroup } from "@nextui-org/react"
 import "../../background.css"
+import SectionContainer from '@/components/layouts/SectionContainer'
 
 const dataMap: { [key: string]: any } = {
     "1": webService,
@@ -50,60 +51,63 @@ const ServiceProduct = ({ params }: { params: Promise<{ id: string }> }) => {
     }, [id, selectedCategories, selectedPriceSort])
 
     return (
-        <PageContainer className='h-fit mb-20 px-5 sm:px-0' withNavbar withFooter>
-            <div className='mb-14 sm:mt-5 sm:mb-16 text-center'>
-                <h2 className="font-bold text-2xl md:text-3xl text-zinc-800 mb-1">
-                    Layanan NeoBoost
-                </h2>
-                <p className="text-sm sm:text-base text-zinc-600">
-                    Jelajahi berbagai layanan terbaik yang kami sediakan untuk Anda.
-                </p>
-            </div>
-
-            <div className='mb-10 flex flex-col sm:flex-row sm:gap-24 sm:items-center gap-8'>
-                <div className='sm:h-[80px]'>
-                    <h3 className="font-semibold text-md sm:text-lg mb-2">Filter Kategori</h3>
-                    <CheckboxGroup
-                        value={selectedCategories}
-                        onValueChange={setSelectedCategories}
-                        orientation="horizontal"
-                        className="flex flex-wrap gap-4"
-                    >
-                        <Checkbox value="instagram">Instagram</Checkbox>
-                        <Checkbox value="tiktok">Tiktok</Checkbox>
-                    </CheckboxGroup>
+        <PageContainer className='h-fit mb-20' withNavbar withFooter>
+            <SectionContainer className='px-8 sm:px-20'>
+                <div className='mb-14 sm:mt-5 sm:mb-16 text-center'>
+                    <h2 className="font-bold text-2xl md:text-3xl text-zinc-800 mb-1">
+                        Layanan NeoBoost
+                    </h2>
+                    <p className="text-sm sm:text-base text-zinc-600">
+                        Jelajahi berbagai layanan terbaik yang kami sediakan untuk Anda.
+                    </p>
                 </div>
-                <div className='sm:h-[80px]'>
-                    <h3 className="font-semibold text-md sm:text-lg mb-2">Urutkan Harga</h3>
-                    <CheckboxGroup
-                        value={selectedPriceSort ? [selectedPriceSort] : []}
-                        onValueChange={(val) => setSelectedPriceSort(val[0] || null)}
-                        orientation="horizontal"
-                        className="flex gap-4"
-                    >
-                        <Checkbox value="asc">Terendah</Checkbox>
-                        <Checkbox value="desc">Tertinggi</Checkbox>
-                    </CheckboxGroup>
-                </div>
-            </div>
 
-            <div className='grid grid-cols-2 sm:grid-cols-5 gap-5'>
-                {filteredData.length > 0 ? (
-                    filteredData.flatMap((category: any) =>
-                        category.services.map((service: any) => (
-                            <Cards.CardProductService
-                                key={`${category.id}-${service.id}`}
-                                category={category.category}
-                                service={service}
-                            />
-                        ))
-                    )
-                ) : (
-                    <div className="h-screen col-span-full">
-                        <p className="text-center text-zinc-500">Tidak ada produk ditemukan.</p>
+                <div className='mb-10 flex flex-col sm:flex-row sm:gap-24 sm:items-center gap-8 '>
+                    <div className='sm:h-[80px]'>
+                        <h3 className="font-semibold text-md sm:text-lg mb-2">Filter Kategori</h3>
+                        <CheckboxGroup
+                            value={selectedCategories}
+                            onValueChange={setSelectedCategories}
+                            orientation="horizontal"
+                            className="flex flex-wrap gap-4"
+                        >
+                            <Checkbox value="instagram">Instagram</Checkbox>
+                            <Checkbox value="tiktok">Tiktok</Checkbox>
+                        </CheckboxGroup>
                     </div>
-                )}
-            </div>
+                    <div className='sm:h-[80px]'>
+                        <h3 className="font-semibold text-md sm:text-lg mb-2">Urutkan Harga</h3>
+                        <CheckboxGroup
+                            value={selectedPriceSort ? [selectedPriceSort] : []}
+                            onValueChange={(val) => setSelectedPriceSort(val[0] || null)}
+                            orientation="horizontal"
+                            className="flex gap-4"
+                        >
+                            <Checkbox value="asc">Terendah</Checkbox>
+                            <Checkbox value="desc">Tertinggi</Checkbox>
+                        </CheckboxGroup>
+                    </div>
+                    
+                </div>
+
+                <div className='grid grid-cols-2  lg:grid-cols-4 gap-5 sm:gap-5'>
+                    {filteredData.length > 0 ? (
+                        filteredData.flatMap((category: any) =>
+                            category.services.map((service: any) => (
+                                <Cards.CardProductService
+                                    key={`${category.id}-${service.id}`}
+                                    category={category.category}
+                                    service={service}
+                                />
+                            ))
+                        )
+                    ) : (
+                        <div className="h-screen col-span-full">
+                            <p className="text-center text-zinc-500">Tidak ada produk ditemukan.</p>
+                        </div>
+                    )}
+                </div>
+            </SectionContainer>
         </PageContainer>
     )
 }

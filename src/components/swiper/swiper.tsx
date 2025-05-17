@@ -32,7 +32,7 @@ const ServiceSwiper = () => {
                 <SwiperSlide key={index}>
                     <div className="flex justify-center">
                         <Cards.CardService
-                            link={service.id == 3 ? `/service/${service.id}` : `https://wa.me/6285951334587?text=${encodeURIComponent(`Halo, Saya ingin order jasa ${service.label}`)}`}
+                            link={service.id == 3 ? `/service/${service.id}` : `https://wa.me/6285951334587?text=${encodeURIComponent(`Halo, Saya ingin order ${service.label}`)}`}
                             src={service.image}
                             title={service.label}
                         />

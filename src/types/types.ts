@@ -47,7 +47,7 @@ export interface ICardService {
   title: string;
   link: string;
 }
-interface IDataNeoBoostService {
+export interface IDataNeoBoostService {
   id: number;
   name: string;
   count: number;

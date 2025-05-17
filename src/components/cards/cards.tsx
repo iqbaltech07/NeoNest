@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, Image, CardFooter, Button, Chip, Divider } 
 import Link from "next/link";
 import { IoStarSharp } from "react-icons/io5";
 import { ICardService, ICardTestimoni } from "@/types/types";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 
 const Cards = {
     CardService: ({ link, src, title }: ICardService) => {
@@ -59,12 +59,17 @@ const Cards = {
     CardProductService: (props: { category: string, service: any }) => {
         const { category, service } = props
 
+        const renderIcon: { [key: string]: React.ReactElement } = {
+            instagram: <FaInstagram className="text-lg sm:text-2xl text-zinc-800 mr-0 sm:mr-2 hidden sm:block" />,
+            tiktok: <FaTiktok className="text-lg sm:text-2xl text-zinc-800 mr-0 sm:mr-2 hidden sm:block" />,
+        }
+
         return (
-            <Card className="w-full h-[270px] sm:h-[350px] border-none bg-white">
+            <Card className="w-full sm:w-[220px] md:w-[285px] lg:w-[290px] h-[280px] sm:h-[350px] border-none bg-white">
                 <CardHeader className="flex flex-col items-start pb-0 pt-2 px-3 sm:pt-4 sm:px-5">
                     <div className="flex items-center w-full">
-                        <FaInstagram className="text-lg sm:text-2xl text-zinc-800 mr-0 sm:mr-2 hidden sm:block" />
-                        <p className="text-sm sm:text-xl font-bold text-zinc-800">{category}</p>
+                        {renderIcon[category.toLocaleLowerCase()]}
+                        <p className="text-sm sm:text-xl font-bold text-zinc-800">{category.charAt(0).toLocaleUpperCase() + category.slice(1)}</p>
                         {service.isPromo && (
                             <small className="ml-auto text-red-600 font-bold text-[11px]">PROMO</small>
                         )}
@@ -74,6 +79,7 @@ const Cards = {
                 <Divider className="my-2 bg-white/20" />
 
                 <CardBody className="py-0 px-3 sm:px-5">
+
                     <div className="py-1 sm:py-2">
                         <p className="text-zinc-800 text-xs sm:text-base font-semibold">{service.name}</p>
                         <div className="flex items-center mt-1">
@@ -107,7 +113,7 @@ const Cards = {
                         radius="sm"
                         size="sm"
                         onClick={() => {
-                            const message = `Saya ingin order ${service.count >= 1000 ? `${service.count / 1000}k` : service.count} ${service.name}. Apakah bisa?`;
+                            const message = `Halo, Saya ingin order ${service.count >= 1000 ? `${service.count / 1000}k` : service.count} ${service.name}. Apakah bisa?`;
                             const encodedMessage = encodeURIComponent(message);
                             const url = `https://wa.me/6285951334587?text=${encodedMessage}`;
                             window.open(url, '_blank');
